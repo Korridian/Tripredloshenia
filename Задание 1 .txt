@@ -1,0 +1,39 @@
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        try
+        {
+            /// Укажите путь к текстовому файлу, содержащему предложения
+            string filePath = "путь_к_файлу.txt";
+
+            /// Считываем содержимое файла
+            string[] sentences = File.ReadAllLines(filePath);
+
+            /// Проверяем, что в файле есть не менее трех предложений
+            if (sentences.Length < 3)
+            {
+                Console.WriteLine("Недостаточно предложений в файле.");
+                return;
+            }
+
+            /// Выводим три предложения в обратном порядке
+            for (int i = 2; i >= 0; i--)
+            {
+                Console.WriteLine(sentences[i]);
+            }
+        }
+        catch (FileNotFoundException)
+        {
+            Console.WriteLine("Файл не найден.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Произошла ошибка: " + ex.Message);
+        }
+    }
+}
+
